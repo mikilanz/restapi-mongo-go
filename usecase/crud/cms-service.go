@@ -11,7 +11,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson" //add this
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -20,19 +19,19 @@ var cmsConfigCollection *mongo.Collection = configs.GetCollection(configs.DB, "c
 func GetOne(c *gin.Context) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-		userId := c.Param("userId")
+		companyCode := c.Param("companyCode")
 		var user schema.CmsConfigs
 		defer cancel()
 
-		objId, _ := primitive.ObjectIDFromHex(userId)
+		// objId, _ := primitive.ObjectIDFromHex(companyCode)
 
-		err := cmsConfigCollection.FindOne(ctx, bson.M{"id": objId}).Decode(&user)
+		err := cmsConfigCollection.FindOne(ctx, bson.M{"companyCode": companyCode}).Decode(&user)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, dto.DefaultHttpResponse{StatusCode: http.StatusInternalServerError, Message: "error", Data: map[string]interface{}{"data": err.Error()}})
 			return
 		}
 
-		c.JSON(http.StatusOK, dto.DefaultHttpResponse{StatusCode: http.StatusOK, Message: "success", Data: map[string]interface{}{"data": user}})
+		c.JSON(http.StatusOK, dto.DefaultHttpResponse{StatusCode: http.StatusOK, Message: "success", Ok: true, Data: map[string]interface{}{"data": user}})
 	}
 }
 
@@ -61,7 +60,7 @@ func GetAll(c *gin.Context) gin.HandlerFunc {
 		}
 
 		c.JSON(http.StatusOK,
-			dto.DefaultHttpResponse{StatusCode: http.StatusOK, Message: "success", Data: map[string]interface{}{"data": users}},
+			dto.DefaultHttpResponse{StatusCode: http.StatusOK, Message: "success", Ok: true, Data: map[string]interface{}{"data": users}},
 		)
 	}
 }

@@ -1,0 +1,52 @@
+host: companycms.nukeapp.dev
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Company Config Engine
+  version: "1.0"
+paths:
+  /cms:
+    get:
+      consumes:
+      - application/json
+      description: get all cms config
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - BearerAuth: []
+      summary: get all cms config
+      tags:
+      - CMS Company
+  /cms/{companyCode}:
+    get:
+      consumes:
+      - application/json
+      description: get one cms config
+      parameters:
+      - description: Company Code
+        in: path
+        name: companyCode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - BearerAuth: []
+      summary: get one cms config
+      tags:
+      - CMS Company
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
