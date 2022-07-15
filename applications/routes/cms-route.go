@@ -9,6 +9,6 @@ import (
 func CmsRoute(router *gin.Engine) {
 	//All routes related to cms comes here
 
-	router.GET("/cms/:id", controllers.GetOne()) //add this
+	router.GET("/cms/:companyCode", controllers.GetOne()) //add this
 	router.GET("/cms", controllers.GetAll())
 }

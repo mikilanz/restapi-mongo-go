@@ -18,6 +18,10 @@ import (
 // @Accept json
 // @Produce json
 // @Param        companyCode   path      string  true  "Company Code"
+// @Success      200  {object}   schema.CmsConfigs
+// @Failure      400  {object}  dto.DefaultHttpResponse
+// @Failure      404  {object}  dto.DefaultHttpResponse
+// @Failure      500  {object}  dto.DefaultHttpResponse
 // @Security BearerAuth
 // @Router /cms/{companyCode} [get]
 func GetOne() gin.HandlerFunc {
@@ -32,6 +36,10 @@ func GetOne() gin.HandlerFunc {
 // @Tags CMS Company
 // @Accept json
 // @Produce json
+// @Success      200  {array}   schema.CmsConfigs
+// @Failure      400  {object}  dto.DefaultHttpResponse
+// @Failure      404  {object}  dto.DefaultHttpResponse
+// @Failure      500  {object}  dto.DefaultHttpResponse
 // @Security BearerAuth
 // @Router /cms [get]
 func GetAll() gin.HandlerFunc {

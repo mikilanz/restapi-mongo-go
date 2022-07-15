@@ -20,6 +20,7 @@ func GetOne(c *gin.Context) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		companyCode := c.Param("companyCode")
+
 		var user schema.CmsConfigs
 		defer cancel()
 
@@ -31,7 +32,7 @@ func GetOne(c *gin.Context) gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusOK, dto.DefaultHttpResponse{StatusCode: http.StatusOK, Message: "success", Ok: true, Data: map[string]interface{}{"data": user}})
+		c.JSON(http.StatusOK, user)
 	}
 }
 
@@ -54,13 +55,12 @@ func GetAll(c *gin.Context) gin.HandlerFunc {
 			var singleUser schema.CmsConfigs
 			if err = results.Decode(&singleUser); err != nil {
 				c.JSON(http.StatusInternalServerError, dto.DefaultHttpResponse{StatusCode: http.StatusInternalServerError, Message: "error", Data: map[string]interface{}{"data": err.Error()}})
+				return
 			}
 
 			users = append(users, singleUser)
 		}
 
-		c.JSON(http.StatusOK,
-			dto.DefaultHttpResponse{StatusCode: http.StatusOK, Message: "success", Ok: true, Data: map[string]interface{}{"data": users}},
-		)
+		c.JSON(http.StatusOK, users)
 	}
 }

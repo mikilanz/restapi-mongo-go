@@ -9,6 +9,9 @@ import (
 type CmsConfigs struct {
 	Id              primitive.ObjectID `json:"id,omitempty"`
 	CompanyCode     string             `json:"companyCode,omitempty" validate:"required"`
+	Ips             []string           `json:"ips,omitempty"`
+	HeadLink        []interface{}      `json:"headLink,omitempty"`
+	Keywords        []string           `json:"keywords,omitempty"`
 	PrimaryColor    string             `json:"primaryColor,omitempty"`
 	BackgroundColor string             `json:"backgroundColor,omitempty"`
 	Display         string             `json:"display,omitempty"`

@@ -1,3 +1,39 @@
+definitions:
+  dto.DefaultHttpResponse:
+    properties:
+      data:
+        additionalProperties: true
+        type: object
+      message:
+        type: string
+      ok:
+        type: boolean
+      statusCode:
+        type: integer
+    type: object
+  schema.CmsConfigs:
+    properties:
+      backgroundColor:
+        type: string
+      companyCode:
+        type: string
+      companyLogoUrl:
+        type: string
+      createdAt:
+        type: string
+      display:
+        type: string
+      id:
+        type: string
+      primaryColor:
+        type: string
+      scope:
+        type: string
+      themeColor:
+        type: string
+    required:
+    - companyCode
+    type: object
 host: companycms.nukeapp.dev
 info:
   contact:
@@ -19,7 +55,25 @@ paths:
       description: get all cms config
       produces:
       - application/json
-      responses: {}
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/schema.CmsConfigs'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.DefaultHttpResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.DefaultHttpResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.DefaultHttpResponse'
       security:
       - BearerAuth: []
       summary: get all cms config
@@ -38,7 +92,23 @@ paths:
         type: string
       produces:
       - application/json
-      responses: {}
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schema.CmsConfigs'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.DefaultHttpResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.DefaultHttpResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.DefaultHttpResponse'
       security:
       - BearerAuth: []
       summary: get one cms config
