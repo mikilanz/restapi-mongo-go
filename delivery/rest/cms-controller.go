@@ -17,6 +17,7 @@ import (
 // @Tags CMS Company
 // @Accept json
 // @Produce json
+// @Param        x-apigateway-api-userinfo   header      string  true  "x-apigateway-api-userinfo"
 // @Param        companyCode   path      string  true  "Company Code"
 // @Success      200  {object}   schema.CmsConfigs
 // @Failure      400  {object}  dto.DefaultHttpResponse
@@ -36,6 +37,10 @@ func GetOne() gin.HandlerFunc {
 // @Tags CMS Company
 // @Accept json
 // @Produce json
+// @Param        x-apigateway-api-userinfo   header      string  true  "x-apigateway-api-userinfo"
+// @Param   size     query     int     false  "size"
+// @Param   page     query     int     false  "page"
+// @Param   sort     query     string     false  "sort"     example("id,DESC")
 // @Success      200  {array}   schema.CmsConfigs
 // @Failure      400  {object}  dto.DefaultHttpResponse
 // @Failure      404  {object}  dto.DefaultHttpResponse

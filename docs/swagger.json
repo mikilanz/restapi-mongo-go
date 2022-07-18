@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server celler server.",
+        "description": "This is a sample result for Company Config Engine.",
         "title": "Company Config Engine",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
@@ -35,6 +35,34 @@
                     "CMS Company"
                 ],
                 "summary": "get all cms config",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x-apigateway-api-userinfo",
+                        "name": "x-apigateway-api-userinfo",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "size",
+                        "name": "size",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "page",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "example": "\"id,DESC\"",
+                        "description": "sort",
+                        "name": "sort",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -85,6 +113,13 @@
                 ],
                 "summary": "get one cms config",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x-apigateway-api-userinfo",
+                        "name": "x-apigateway-api-userinfo",
+                        "in": "header",
+                        "required": true
+                    },
                     {
                         "type": "string",
                         "description": "Company Code",
@@ -162,8 +197,24 @@
                 "display": {
                     "type": "string"
                 },
+                "headLink": {
+                    "type": "array",
+                    "items": {}
+                },
                 "id": {
                     "type": "string"
+                },
+                "ips": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "keywords": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "primaryColor": {
                     "type": "string"

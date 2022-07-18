@@ -14,7 +14,7 @@ import (
 
 // @title           Company Config Engine
 // @version         1.0
-// @description     This is a sample server celler server.
+// @description     This is a sample result for Company Config Engine.
 // @termsOfService  http://swagger.io/terms/
 
 // @contact.name   API Support
@@ -32,9 +32,8 @@ import (
 func main() {
 
 	router := gin.Default()
-	router.Use(middleware.AccessMiddleware())
 
-	// gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode)
 
 	//run database
 	// configs.ConnectDB()
@@ -43,8 +42,11 @@ func main() {
 
 	router.GET("/swagger/*any", func(context *gin.Context) {
 		docs.SwaggerInfo.Host = context.Request.Host
+		docs.SwaggerInfo.Version = configs.GetEnvKey("APP_VERSION")
 		ginSwagger.CustomWrapHandler(&ginSwagger.Config{URL: "/swagger/doc.json"}, swaggerfiles.Handler)(context)
 	})
+
+	router.Use(middleware.AccessMiddleware())
 	routes.CmsRoute(router)
 
 	appPort := fmt.Sprintf("0.0.0.0:%v", configs.GetEnvKey("APP_PORT"))

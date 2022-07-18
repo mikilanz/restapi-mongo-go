@@ -43,6 +43,34 @@ const docTemplate = `{
                     "CMS Company"
                 ],
                 "summary": "get all cms config",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x-apigateway-api-userinfo",
+                        "name": "x-apigateway-api-userinfo",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "size",
+                        "name": "size",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "page",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "example": "\"id,DESC\"",
+                        "description": "sort",
+                        "name": "sort",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -93,6 +121,13 @@ const docTemplate = `{
                 ],
                 "summary": "get one cms config",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x-apigateway-api-userinfo",
+                        "name": "x-apigateway-api-userinfo",
+                        "in": "header",
+                        "required": true
+                    },
                     {
                         "type": "string",
                         "description": "Company Code",
@@ -170,8 +205,24 @@ const docTemplate = `{
                 "display": {
                     "type": "string"
                 },
+                "headLink": {
+                    "type": "array",
+                    "items": {}
+                },
                 "id": {
                     "type": "string"
+                },
+                "ips": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "keywords": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "primaryColor": {
                     "type": "string"
@@ -201,7 +252,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "Company Config Engine",
-	Description:      "This is a sample server celler server.",
+	Description:      "This is a sample result for Company Config Engine.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

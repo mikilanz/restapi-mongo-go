@@ -23,8 +23,19 @@ definitions:
         type: string
       display:
         type: string
+      headLink:
+        items: {}
+        type: array
       id:
         type: string
+      ips:
+        items:
+          type: string
+        type: array
+      keywords:
+        items:
+          type: string
+        type: array
       primaryColor:
         type: string
       scope:
@@ -40,7 +51,7 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server celler server.
+  description: This is a sample result for Company Config Engine.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -53,6 +64,25 @@ paths:
       consumes:
       - application/json
       description: get all cms config
+      parameters:
+      - description: x-apigateway-api-userinfo
+        in: header
+        name: x-apigateway-api-userinfo
+        required: true
+        type: string
+      - description: size
+        in: query
+        name: size
+        type: integer
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: sort
+        example: '"id,DESC"'
+        in: query
+        name: sort
+        type: string
       produces:
       - application/json
       responses:
@@ -85,6 +115,11 @@ paths:
       - application/json
       description: get one cms config
       parameters:
+      - description: x-apigateway-api-userinfo
+        in: header
+        name: x-apigateway-api-userinfo
+        required: true
+        type: string
       - description: Company Code
         in: path
         name: companyCode
